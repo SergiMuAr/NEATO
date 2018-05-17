@@ -1,0 +1,386 @@
+login as: pi
+pi@192.168.100.1's password:
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Fri Apr  1 00:17:06 2016
+pi@raspberrypi:~ $ cd ESJ
+pi@raspberrypi:~/ESJ $ python main.py
+Creating commander process...
+Creating odometry process...
+Starting commander process...
+Commander process running...
+Test Mode On
+Starting odometry process...
+Odometry process running...
+Write a command:
+Set Motos Enable
+                Play Sound 1
+
+Write a command:
+-1,-1
+     8
+Write a command:
+-1,-1
+     -1,-1
+          -1,-1
+               -1,-1
+                    -1,-1
+                         -1,-1
+                              -1,-1
+                                   8
+Write a command:
+-1,-1
+     -1,-1
+          -1,-1
+               -1,-1
+                    q
+-1,-1
+Waiting commander process...
+-1,-1
+Waiting odometry process...
+q^CTraceback (most recent call last):
+  File "main.py", line 101, in <module>
+    odometry.join()
+Process Process-2:
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+  File "/usr/lib/python2.7/multiprocessing/process.py", line 145, in join
+    res = self._popen.wait(timeout)
+  File "/usr/lib/python2.7/multiprocessing/forking.py", line 154, in wait
+    self.run()
+  File "/usr/lib/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+    return self.poll(0)
+  File "/usr/lib/python2.7/multiprocessing/forking.py", line 135, in poll
+  File "/home/pi/ESJ/OdometryModule.py", line 86, in func
+    pid, sts = os.waitpid(self.pid, flag)
+KeyboardInterrupt
+    msg = input.get().split("\n")
+  File "/usr/lib/python2.7/multiprocessing/queues.py", line 117, in get
+    res = self._recv()
+KeyboardInterrupt
+pi@raspberrypi:~/ESJ $
+pi@raspberrypi:~/ESJ $
+pi@raspberrypi:~/ESJ $ python main.py
+Creating commander process...
+Creating odometry process...
+Starting commander process...
+Commander process running...
+Test Mode On
+Starting odometry process...
+Odometry process running...
+Write a command:
+Set Motos Enable
+                Play Sound 1
+
+Write a command:
+8
+Write a command:
+0,0
+   56,57
+        118,118
+               179,178
+                      239,239
+                             8
+Write a command:
+251,251
+       366,366
+              487,487
+                     608,608
+                            731,731
+                                   753,752
+                                          8
+Write a command:
+753,752
+       921,920
+              1101,1101
+                       1284,1283
+                                1464,1463
+                                         q
+Process Process-2:
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/usr/lib/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/pi/ESJ/OdometryModule.py", line 87, in func
+    Lf = int(msg[4].split(',')[1])
+IndexError: list index out of range
+Waiting commander process...
+Waiting odometry process...
+Finish!
+pi@raspberrypi:~/ESJ $ ^C
+pi@raspberrypi:~/ESJ $ Write a command:
+                                          8
+Write a command:
+753,752
+       921,920
+              1101,1101
+                       1284,1283
+                                1464,1463
+-bash: Write: command not found
+pi@raspberrypi:~/ESJ $ 8
+-bash: 8: command not found
+pi@raspberrypi:~/ESJ $ Write a command:
+-bash: Write: command not found
+pi@raspberrypi:~/ESJ $ 0,0
+-bash: 0,0: command not found
+pi@raspberrypi:~/ESJ $    56,57
+-bash: 56,57: command not found
+pi@raspberrypi:~/ESJ $         118,118
+-bash: 118,118: command not found
+pi@raspberrypi:~/ESJ $                179,178
+-bash: 179,178: command not found
+pi@raspberrypi:~/ESJ $                       239,239
+-bash: 239,239: command not found
+pi@raspberrypi:~/ESJ $                              8
+-bash: 8: command not found
+pi@raspberrypi:~/ESJ $ Write a command:
+-bash: Write: command not found
+pi@raspberrypi:~/ESJ $ 251,251
+-bash: 251,251: command not found
+pi@raspberrypi:~/ESJ $        366,366
+-bash: 366,366: command not found
+pi@raspberrypi:~/ESJ $               487,487
+-bash: 487,487: command not found
+pi@raspberrypi:~/ESJ $                      608,608
+-bash: 608,608: command not found
+pi@raspberrypi:~/ESJ $                             731,731
+-bash: 731,731: command not found
+pi@raspberrypi:~/ESJ $                                    753,752
+-bash: 753,752: command not found
+pi@raspberrypi:~/ESJ $                                           8
+-bash: 8: command not found
+pi@raspberrypi:~/ESJ $ Write a command:
+-bash: Write: command not found
+pi@raspberrypi:~/ESJ $ 753,752
+-bash: 753,752: command not found
+pi@raspberrypi:~/ESJ $        921,920
+-bash: 921,920: command not found
+pi@raspberrypi:~/ESJ $               1101,1101
+-bash: 1101,1101: command not found
+pi@raspberrypi:~/ESJ $                        1284,1283
+-bash: 1284,1283: command not found
+pi@raspberrypi:~/ESJ $                                 1464,1463
+-bash: 1464,1463: command not found
+pi@raspberrypi:~/ESJ $ ^C
+pi@raspberrypi:~/ESJ $
+pi@raspberrypi:~/ESJ $ python main.py
+Creating commander process...
+Creating odometry process...
+Starting commander process...
+Commander process running...
+Test Mode On
+Starting odometry process...
+Odometry process running...
+Write a command:
+Set Motos Enable
+                Play Sound 1
+                            0,0
+                               4
+Write a command:
+0,0
+   8
+Write a command:
+0,0
+   5,57
+       13,117
+             20,178
+                   27,239
+                         35,301
+                               43,361
+                                     50,423
+                                           52,440
+                                                 8
+Write a command:
+52,440
+      102,554
+             155,676
+                    209,798
+                           262,920
+                                  316,1042
+                                          8
+Write a command:
+355,1133
+        455,1302
+                562,1483
+                        669,1664
+                                778,1846
+                                        885,2028
+                                                913,2077
+                                                        913,2077
+                                                                q
+Process Process-2:
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/usr/lib/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/pi/ESJ/OdometryModule.py", line 87, in func
+    Lf = int(msg[4].split(',')[1])
+IndexError: list index out of range
+Waiting commander process...
+Waiting odometry process...
+Finish!
+pi@raspberrypi:~/ESJ $ python main.py
+Creating commander process...
+Creating odometry process...
+Starting commander process...
+Commander process running...
+Test Mode On
+Starting odometry process...
+Odometry process running...
+Write a command:
+Set Motos Enable
+                Play Sound 1
+                            0,0
+                               0,0
+                                  4
+Write a command:
+0,0
+   8
+Write a command:
+0,0
+   5,56
+       13,117
+             20,179
+                   27,239
+                         35,301
+                               42,361
+                                     49,422
+                                           52,441
+                                                 52,441
+                                                       52,441
+                                                             52,441
+                                                                   5
+Write a command:
+52,441
+      4
+Write a command:
+52,441
+      8
+Write a command:
+52,441
+      57,498
+            65,559
+                  72,619
+                        80,681
+                              87,741
+                                    95,802
+                                          102,864
+                                                 5
+Write a command:
+104,882
+       6
+Write a command:
+8
+Write a command:
+104,882
+       160,888
+              221,895
+                     282,903
+                            343,910
+                                   404,917
+                                          465,925
+                                                 5
+Write a command:
+526,932
+       6
+Write a command:
+8
+Write a command:
+545,934
+       601,940
+              663,948
+                     723,956
+                            784,963
+                                   845,970
+                                          907,977
+                                                 967,985
+                                                        986,986
+                                                               5
+Write a command:
+986,986
+       6
+Write a command:
+8
+Write a command:
+986,986
+       1042,992
+               1103,999
+                       1164,1007
+                                1224,1015
+                                         1286,1022
+                                                  1347,1030
+                                                           1408,1037
+                                                                    1426,1040
+                                                                             5
+Write a command:
+1426,1040
+         6
+Write a command:
+8
+Write a command:
+1426,1040
+         1482,1046
+                  1543,1054
+                           1604,1060
+                                    1664,1068
+                                             1726,1075
+                                                      1787,1083
+                                                               1848,1090
+                                                                        5
+Write a command:
+1867,1092
+         4
+Write a command:
+8
+Write a command:
+1867,1092
+         1872,1148
+                  1880,1209
+                           1887,1271
+                                    1895,1332
+                                             1902,1392
+                                                      1909,1453
+                                                               1917,1515
+                                                                        1918,1532
+ 1918,1532
+          5
+Write a command:
+1918,1532
+         1918,1532
+                  8
+Write a command:
+1918,1532
+         8
+Write a command:
+8
+Write a command:
+1975,1589
+         2331,1945
+                  2510,2125
+                           2692,2307
+                                    5
+Write a command:
+2874,2488
+         2908,2522
+                  q
+Process Process-2:
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/usr/lib/python2.7/multiprocessing/process.py", line 114, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/pi/ESJ/OdometryModule.py", line 87, in func
+    Lf = int(msg[4].split(',')[1])
+IndexError: list index out of range
+Waiting commander process...
+Waiting odometry process...
+Finish!
+pi@raspberrypi:~/ESJ $
