@@ -1,0 +1,12 @@
+['GetMotors LeftWheel RightWheel\r', 'Parameter,Value\r', 'LeftWheel_RPM,0\r', 'LeftWheel_Load%,0\r', 'LeftWheel_PositionInMM,10301\r', 'LeftWheel_Speed,0\r', 'RightWheel_RPM,0\r', 'RightWheel_Load%,0\r', 'RightWheel_PositionInMM,115650\r', 'RightWheel_Speed,0\r', '\x1a']
+########################
+Speed = 0
+Tita_dot = 0
+Direction: fordward.
+q to exit.
+########################
+L: 10301 R: 115650 L2: 0 R2:  0
+X: 0.0 Y: 0.0
+Theta 0.0
+Write command: 
+
