@@ -1,5 +1,5 @@
 
-debug = True
+debug = False
 
 #Hacemos import de los modulos necesarios
 import os,sys
@@ -38,7 +38,7 @@ def getch():
 	return ch
 
 
-verboseGeneral = True;
+verboseGeneral = False;
 
 def printVerbose(str,verbose = False):
 	if verbose:
@@ -96,6 +96,7 @@ if __name__ == '__main__':
 			input_command.put("backbase")
 		elif key == "o":
 			input_command.put("motors")
+			print "DEMANANT MOTORS"
 		#tiempo de espera para que el mensaje llege bien
 		time.sleep(0.01);
 			

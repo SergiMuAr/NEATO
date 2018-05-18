@@ -1,5 +1,5 @@
 
-debug = True
+debug = False
 
 import time
 import math
@@ -11,9 +11,9 @@ else:
 from multiprocessing import Queue
 import numpy
 
-verboseCommands = True;
-verboseSending = True;	
-verboseDebug = True;	
+verboseCommands = False;
+verboseSending = False;	
+verboseDebug = False;	
 
 def printVerbose(str,verbose = False):
 	if verbose:
@@ -38,6 +38,56 @@ def envia(ser, missatge,temps=0.1, show_time = False):
 
 		return rbuffer  
 	
+def get_laser():
+	msg = envia(ser, 'GetLDSScan',0.2,False)
+	var = []
+	for line in msg.split('\r\n')[2:362]:
+		s = line.split(',')
+		var.append([s[0], s[1], s[2], s[3]])
+	return var
+
+def search_max():
+	msg = get_laser()
+	values = [5000 for num in range(360)]
+	values2= [5000 for num in range(360)]
+	for value in msg:
+		if int(value[1]) > 0:
+			values[int(value[0])] = int(value[1])
+	print(values)
+	for value in msg:
+			values[int(value[0])] = int(value[3])
+	print(values)
+	factor_varianza=300
+	varianza=[]
+	i=1
+	anterior=values[0]
+	seguidos=0
+	while i<(len(values)):
+		if values[i]<5000:
+			if abs(values[i]-anterior)>=factor_varianza:
+				aux = (i,values[i])
+				varianza.append(aux)
+			anterior=values[i]
+		i=i+1
+	return varianza
+		
+
+def comprovaLaser():
+	envia(ser, 'SetLDSRotation On',0.2,False)
+	time.sleep(3)
+	print 'INI: SetLaser -> on'
+	maxims = search_max()
+	flag = False
+	if len(maxims)>0: flag = True
+	print('----------')
+	print(maxims)
+	print('----------')
+
+	envia(ser, 'SetLDSRotation Off',0.2,False)
+	time.sleep(3)
+	print 'FIN: SetLaser -> off'
+	return flag
+
 def func(input,output):
 	print 'Commander process running...'
 	
@@ -74,6 +124,7 @@ def func(input,output):
 		
 		if msg == "q": #recibinos orden de salir
 			printVerbose("quite",verboseCommands)
+			print "que no me cierrorooororo"
 			quite = True
 		
 		elif msg == "forward": #recibimos acelerar hacia delante
@@ -147,22 +198,24 @@ def func(input,output):
 			envia(ser, comando, 0.2)
 			
 		elif msg == "backbase": #recibimos orden de volver a la base
+			print "ENTRO AL BACKBASE"
+
 			printVerbose(msg,verboseCommands)
 			
 			distance_weels_mid = 121.5
 			distance_robot = 318
 			speed = 125
 	
-			#per parar el moviment cap a la direccio, hem de tenir en compte els 2 maxims i que la distancia fins el objectiu sigui menor a una distancia en la que el laser nomes capturi les dos referencies
+			#per parar el moviment cap a la direccio, hem de tenir en compte els 2 maxims i que la distancia fins el objectiu sigui menor a 800!!!
 			base = [0, 0]
 			
 			#funcionara mentres no detectem 2 maxims
 			output.put("o2")
+			time.sleep(0.1)
+
 			msg = input.get().split(",")
 			print "Odom:"+msg[0]+" "+msg[1]+" "+msg[2]
-			
 			odom = [float(msg[0]),float(msg[1]),float(msg[2])]
-			
 			x_go = base[0] - odom[0]
 			y_go = base[1] - odom[1]
 
@@ -182,11 +235,14 @@ def func(input,output):
 			
 			i = 0
 			distRest = 0
-			while i < divs: #!!! Falta condicio de detectar maxims i minims si la distancia restant es menor a una distancia en la que el laser nomes capturi les dos referencies !!!
+			flagLaser = False
+			while i < divs and not flagLaser: #!!! Falta condicio de detectar maxims i minims si la distancia restant es menor a 1000 !!!
 				envia(ser, 'SetMotor LWheelDist '+ str(timeRuning*speed) +' RwheelDist ' + str(timeRuning*speed) + ' Speed '+str(speed))
 				time.sleep(timeRuning)
 				i += 1
 				distRest = Dist - (i*timeRuning*speed)
+				flagLaser = comprovaLaser()
+			if flagLaser: print "HE DETECTAT MAXIMS"
 				
 			#envia(ser, 'SetMotor LWheelDist '+ str(-angle*distance_weels_mid) +' RWheelDist ' + str(angle*distance_weels_mid) + ' Speed '+str(speed))
 			#time.sleep(abs((angle*distance_weels_mid)/speed))
@@ -207,7 +263,7 @@ def func(input,output):
 			
 		elif msg == "motors": #recibimos leer motores
 			printVerbose(msg,verboseCommands)
-			
+			print "REBEM LLEGIR MOTORS"
 			comando = 'GetMotors LeftWheel RightWheel'
 			ret = envia(ser, comando, 0.2)
 			if debug:
