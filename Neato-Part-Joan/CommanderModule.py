@@ -49,27 +49,30 @@ def get_laser():
 def search_max():
 	msg = get_laser()
 	values = [5000 for num in range(360)]
-	values2= [5000 for num in range(360)]
+	values2= []
+	for value in msg: #Aqui recorrem els 360 resultats
+		if int(value[1]) > 0 and (int(value[0]) > 300 or int(value[0]) < 60):
+			values2.append([int(value[0]),int(value[1])])
+	print(values2)
+	"""
 	for value in msg:
-		if int(value[1]) > 0:
-			values[int(value[0])] = int(value[1])
-	print(values)
-	for value in msg:
-			values[int(value[0])] = int(value[3])
-	print(values)
-	factor_varianza=300
-	varianza=[]
+			values2[int(value[0])] = int(value[3])
+	print(values2)
+	"""
+	factor_varianza=100
+	res=[]
 	i=1
-	anterior=values[0]
+	anterior=values2[0][1]
 	seguidos=0
-	while i<(len(values)):
-		if values[i]<5000:
-			if abs(values[i]-anterior)>=factor_varianza:
-				aux = (i,values[i])
-				varianza.append(aux)
-			anterior=values[i]
+	while i<(len(values2)):
+		if values2[i]<5000:
+			if abs(values2[i][1]-anterior)>=factor_varianza:
+				aux = (values2[i][0],values2[i][1])
+				res.append(aux)
+			anterior=values2[i][1]
 		i=i+1
-	return varianza
+
+	return res
 		
 
 def comprovaLaser():
@@ -241,8 +244,9 @@ def func(input,output):
 				time.sleep(timeRuning)
 				i += 1
 				distRest = Dist - (i*timeRuning*speed)
-				flagLaser = comprovaLaser()
-			if flagLaser: print "HE DETECTAT MAXIMS"
+				if (distRest < 1000):
+					flagLaser = comprovaLaser()
+			if (flagLaser == True): print "HE DETECTAT MAXIMS"
 				
 			#envia(ser, 'SetMotor LWheelDist '+ str(-angle*distance_weels_mid) +' RWheelDist ' + str(angle*distance_weels_mid) + ' Speed '+str(speed))
 			#time.sleep(abs((angle*distance_weels_mid)/speed))

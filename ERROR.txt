@@ -1,0 +1,77 @@
+pi@raspberrypi:~/ESJ $ python main.py
+Commander process running...
+Odometry process running...
+Write a command:
+o
+DEMANANT MOTORS
+Write a command:
+REBEM LLEGIR MOTORS
+                   REBEM LLEGIR MOTORS
+                                      ENTRO A ODOMETRY MODULE M
+Odometry: x:0.0 y:0.0 theta:0.0
+                               REBEM LLEGIR MOTORS
+                                                  8
+Write a command:
+ENTRO A ODOMETRY MODULE M
+Odometry: x:0.0 y:0.0 theta:0.0
+                               REBEM LLEGIR MOTORS
+                                                  4
+Write a command:
+8
+Write a command:
+ENTRO A ODOMETRY MODULE M
+Odometry: x:56.0 y:0.0 theta:0.0
+                                REBEM LLEGIR MOTORS
+                                                   6
+Write a command:
+ENTRO A ODOMETRY MODULE M
+Odometry: x:215.877449636 y:82.6994625006 theta:27.3510717017
+                                                             8
+Write a command:
+REBEM LLEGIR MOTORS
+                   ENTRO A ODOMETRY MODULE M
+Odometry: x:363.003459603 y:227.600073925 theta:44.5633840657
+                                                             REBEM LLEGIR MOTORS
+                                                                                ENTRO A ODOMETRY MODULE M
+Odometry: x:576.316498144 y:434.255699516 theta:44.091813864
+                                                            REBEM LLEGIR MOTORS
+                                                                               6
+Write a command:
+ENTRO A ODOMETRY MODULE M
+Odometry: x:706.315353282 y:560.197343395 theta:44.091813864
+                                                            REBEM LLEGIR MOTORS
+                                                                               ENTRO A ODOMETRY MODULE M
+Odometry: x:993.479738963 y:710.239389489 theta:27.5868568026
+                                                             REBEM LLEGIR MOTORS
+                                                                                4
+Write a command:
+ENTRO A ODOMETRY MODULE M
+Odometry: x:1134.03474922 y:736.569772941 theta:10.6103295395
+                                                             REBEM LLEGIR MOTORS
+                                                                                ENTRO A ODOMETRY MODULE M
+Odometry: x:1452.39288336 y:691.732863746 theta:351.98330657
+                                                            REBEM LLEGIR MOTORS
+                                                                               5
+Write a command:
+ENTRO A ODOMETRY MODULE M
+Odometry: x:1631.62405686 y:666.490311447 theta:351.98330657
+                                                            b
+Write a command:
+REBEM LLEGIR MOTORS
+                   ENTRO A ODOMETRY MODULE M
+                                            ENTRO AL BACKBASE
+Odometry: x:1817.7868227 y:640.271527844 theta:351.98330657
+                                                           Process Process-1:
+                                                                             Traceback (most recent call last):
+                                                                                                                 File "/usr/lib/python2.7/multiprocessing/process.py", line 258, in _bootstrap
+     self.run()
+                 File "/usr/lib/python2.7/multiprocessing/process.py", line 114, in run
+                                                                                           self._target(*self._args, **self._kwargs)
+                                                                                                                                      File "/home/pi/ESJ/CommanderModule.py", line 220, in func
+      print "Odom:"+msg[0]+" "+msg[1]+" "+msg[2]
+                                                IndexError: list index out of range
+                                                                                   b
+Write a command:
+q
+NO ME CIERRO JODER
+Finish!
