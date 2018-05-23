@@ -77,13 +77,17 @@ class HttpViewer(object):
         self.thread_pose = threading.Thread(target=self.main_pose)
         self.thread_pose.start()
         
-        while not self.exit:
-            time.sleep(0.4)
+        try:
+            while not self.exit:
+                time.sleep(0.4)
+        except KeyboardInterrupt:
+            print "Holas"
 
     def quit(self):
         """ Stops execution of the web server. """
         self.exit = True
-        self.httpd.shutdown()
+        if hasattr(self, 'httpd'):
+			self.httpd.shutdown()
         self.process.terminate()
 
 def point_to_json(point, mm_per_pixel):
